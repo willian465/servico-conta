@@ -14,3 +14,16 @@ C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Microsoft.OpenAp
 C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Conta.deps.json
+C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Conta.runtimeconfig.json
+C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Conta.runtimeconfig.dev.json
+C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Conta.dll
+C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Conta.pdb
+C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+C:\Projetos\Estudos\servico-conta\Conta\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Projetos\Estudos\servico-conta\Conta\obj\Debug\netcoreapp3.1\Conta.csproj.CoreCompileInputs.cache
+C:\Projetos\Estudos\servico-conta\Conta\obj\Debug\netcoreapp3.1\Conta.MvcApplicationPartsAssemblyInfo.cs
+C:\Projetos\Estudos\servico-conta\Conta\obj\Debug\netcoreapp3.1\Conta.MvcApplicationPartsAssemblyInfo.cache
+C:\Projetos\Estudos\servico-conta\Conta\obj\Debug\netcoreapp3.1\Conta.dll
+C:\Projetos\Estudos\servico-conta\Conta\obj\Debug\netcoreapp3.1\Conta.pdb
+C:\Projetos\Estudos\servico-conta\Conta\obj\Debug\netcoreapp3.1\Conta.genruntimeconfig.cache
