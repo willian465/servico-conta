@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Conta.Extensions.DI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,9 @@ namespace Conta
             services.AddCors(options =>
             options.AddDefaultPolicy(
                 builder => builder.AllowAnyOrigin()));
+
+            // registro das dependências
+            services.RegistrarDependencias(_configuration);
 
             services.AddSwaggerGen(c =>
             {
