@@ -1,4 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Conta.Mapper;
+using Conta.Repositories;
+using Conta.Repositories.Interfaces;
+using Conta.Services;
+using Conta.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,20 +17,23 @@ namespace Conta.Extensions.DI
         /// <summary>
         /// Método para realizar o registro das dependências
         /// </summary>
-        /// <param name="service"></param>
+        /// <param name="services"></param>
         /// <param name="configuration"></param>
-        public static void RegistrarDependencias(this IServiceCollection service, IConfiguration configuration = null)
+        public static void RegistrarDependencias(this IServiceCollection services, IConfiguration configuration = null)
         {
-            ResgistrarRepositories(service);
-            ResgistrarServices(service);
+            services.AddSingleton<IConverter, Coverter>();
+            ResgistrarRepositories(services);
+            ResgistrarServices(services);
         }
 
         public static void ResgistrarRepositories(IServiceCollection services)
         {
+            services.AddScoped<IMemoryRepository, MemoryRepository>();
         }
 
         public static void ResgistrarServices(IServiceCollection services)
         {
+            services.AddScoped<IContaService, ContaService>();
         }
     }
 }

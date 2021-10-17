@@ -36,6 +36,9 @@ namespace Conta
 
             // registro das dependências
             services.RegistrarDependencias(_configuration);
+            
+            // usei o cache para simular a base de dados
+            services.AddMemoryCache();
 
             services.AddSwaggerGen(c =>
             {

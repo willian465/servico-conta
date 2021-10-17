@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Conta.Responses;
+using Conta.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,15 +15,22 @@ namespace Conta.Controllers
     [ApiVersion("1")]
     public class ContaController : ControllerBase
     {
-        public ContaController()
-        {
-        }
+        private readonly IContaService _contaService;
 
-        [HttpGet]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        public string Get()
+        public ContaController(IContaService contaService)
         {
-            return "ok";
+            _contaService = contaService;
+        }
+        /// <summary>
+        /// Método criar uma nova conta
+        /// </summary>
+        /// <param name="codigoCliente"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(typeof(ContaResponse), StatusCodes.Status200OK)]
+        public async Task<ActionResult<ContaResponse>> CriarConta(int codigoCliente)
+        {
+            return Ok(await _contaService.CriarConta(codigoCliente));
         }
     }
 }

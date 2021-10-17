@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "XlCKzGWQDKbGPc75BYSoACBIMyxtWDk7fKF1fq3j3MF+6+L2j6zFUEb7BJm2jhb4MSkG09Ymqe1OhiKvcKyKjw==",
+  "dgSpecHash": "a3Uvfpe2nmf/33R1E/1ikzFa+LH3nQPG0jicLPdFQ4IE5i0jZISBhHVN/ao2CG4DC9mqO46KLamSU0zoPFoA9Q==",
   "success": true,
   "projectFilePath": "C:\\Projetos\\Estudos\\servico-conta\\Conta\\Conta.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\willians\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\willians\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
+    "C:\\Users\\willians\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\willians\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\willians\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.2\\microsoft.extensions.dependencyinjection.5.0.2.nupkg.sha512",
     "C:\\Users\\willians\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
@@ -12,7 +14,8 @@
     "C:\\Users\\willians\\.nuget\\packages\\swashbuckle.aspnetcore\\6.1.3\\swashbuckle.aspnetcore.6.1.3.nupkg.sha512",
     "C:\\Users\\willians\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.1.3\\swashbuckle.aspnetcore.swagger.6.1.3.nupkg.sha512",
     "C:\\Users\\willians\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.1.3\\swashbuckle.aspnetcore.swaggergen.6.1.3.nupkg.sha512",
-    "C:\\Users\\willians\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.1.3\\swashbuckle.aspnetcore.swaggerui.6.1.3.nupkg.sha512"
+    "C:\\Users\\willians\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.1.3\\swashbuckle.aspnetcore.swaggerui.6.1.3.nupkg.sha512",
+    "C:\\Users\\willians\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }
