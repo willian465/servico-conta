@@ -1,5 +1,5 @@
 ﻿using Conta.Exceptions;
-using Conta.Mapper;
+using Conta.Mappers;
 using Conta.Models;
 using Conta.Repositories.Interfaces;
 using Conta.Responses;
@@ -31,7 +31,7 @@ namespace Conta.Services
 
             ContaModel contaCadastrada = await _memoryRepository.Buscar<ContaModel>(numeroConta.ToString());
 
-            if (contaCadastrada != null)
+            if (contaCadastrada != null && contaCadastrada.Ativa)
             {
                 contaCadastrada.DataAberturaTratada = DateTimeConvertAsString(contaCadastrada.DataAbertura);
                 contaCadastrada.SaldoTratado = ConvertToMoney(contaCadastrada.Saldo);
@@ -52,7 +52,7 @@ namespace Conta.Services
 
             ContaModel conta = new ContaModel()
             {
-                Numero = new Random(DateTime.Now.Millisecond).Next(),
+                Numero = new Random(DateTime.Now.Millisecond).Next(), // aqui usaria uma sequence do banco
                 Digito = 1,
                 CodigoCliente = codigoCliente,
                 Saldo = 0.0,
@@ -125,8 +125,27 @@ namespace Conta.Services
 
         private string ConvertToMoney(double value)
         {
-            //return string.Format("R$ {0}", Convert.ToDecimal(value));
             return string.Format("R$ {0:n}", value);
+        }
+
+        public async Task<bool> DeltetarConta(long numeroConta)
+        {
+            if (numeroConta <= 0)
+                throw new ContaException("O número da conta é obrigatório");
+
+            ContaModel conta = await _memoryRepository.Buscar<ContaModel>(numeroConta.ToString());
+
+            if (conta == null)
+                throw new ContaException("O conta informada não foi encontrada");
+
+            if(conta.Saldo != 0)
+                throw new ContaException("Conta com saldo diferente de 0 não podem ser excluídas");
+
+            // delete lógico para manter o registro
+            conta.Ativa = false;
+            await _memoryRepository.Atualizar(conta, numeroConta.ToString());
+
+            return true;
         }
     }
 }

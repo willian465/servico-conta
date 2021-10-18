@@ -29,9 +29,9 @@ namespace Conta.Repositories
             return Task.FromResult(_memoryCache.Set(key, model));
         }
 
-        public void Remover(string key)
+        public Task Remover(string key)
         {
-            _memoryCache.Remove(key);
+            return Task.Run(() => { _memoryCache.Remove(key); });
         }
         public Task Atualizar<T>(T model, string key)
         {

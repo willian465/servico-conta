@@ -7,7 +7,7 @@ namespace Conta.Repositories.Interfaces
 {
     public interface IMemoryRepository
     {
-        void Remover(string key);
+        Task Remover(string key);
         Task<T> Adicionar<T>(T model, string key);
         Task<T> Buscar<T>(string key);
         Task Atualizar<T>(T model, string key);

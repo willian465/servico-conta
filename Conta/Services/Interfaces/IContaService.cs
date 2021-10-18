@@ -36,5 +36,11 @@ namespace Conta.Services.Interfaces
         /// <param name="codigoCliente"></param>
         /// <returns></returns>
         Task<ContaResponse> BuscarConta(long codigoCliente);
+        /// <summary>
+        /// Método para deletar uma conta
+        /// </summary>
+        /// <param name="numeroConta"></param>
+        /// <returns></returns>
+        Task<bool> DeltetarConta(long numeroConta);
     }
 }
