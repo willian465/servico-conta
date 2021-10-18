@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Conta.Extensions.DI;
 using Conta.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace Conta
 {
@@ -39,7 +35,7 @@ namespace Conta
 
             // registro das dependências
             services.RegistrarDependencias(_configuration);
-            
+
             // usei o cache para simular a base de dados
             services.AddMemoryCache();
 
@@ -59,7 +55,7 @@ namespace Conta
                 options.ApiVersionReader = new QueryStringApiVersionReader();
                 options.ApiVersionSelector = new CurrentImplementationApiVersionSelector(options);
             });
-           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

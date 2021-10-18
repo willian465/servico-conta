@@ -5,9 +5,7 @@ using Conta.Repositories.Interfaces;
 using Conta.Responses;
 using Conta.Services.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Conta.Services
@@ -138,7 +136,7 @@ namespace Conta.Services
             if (conta == null)
                 throw new ContaException("O conta informada não foi encontrada");
 
-            if(conta.Saldo != 0)
+            if (conta.Saldo != 0)
                 throw new ContaException("Conta com saldo diferente de 0 não podem ser excluídas");
 
             // delete lógico para manter o registro
