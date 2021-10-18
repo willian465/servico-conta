@@ -10,4 +10,4 @@ Serviço de controle das contas dos clientes do Banco Semear
 
 - O projeto faz o uso de cache memory, onde as contas a seguir já são carregadas ao iniciar o projeto já possibilitando testes.
 Contas: 395625934, 116711019, 395625934
-Para executar o projeto execute o comando dotnet run pelo terminal na pasta da projeto. Pode ser executado pelo Visual Studio ou outra IDE de sua preferência.
+- Para executar o projeto execute o comando dotnet run pelo terminal na pasta da projeto. Pode ser executado pelo Visual Studio ou outra IDE de sua preferência.
