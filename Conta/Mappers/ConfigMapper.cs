@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Conta.Mapper.Profiles;
+using Conta.Mappers.Profiles;
 
-namespace Conta.Mapper
+namespace Conta.Mappers
 {
     public static class ConfigMapper
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Conta.Extensions.DI;
+using Conta.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -53,10 +54,11 @@ namespace Conta
                 options.ApiVersionReader = new QueryStringApiVersionReader();
                 options.ApiVersionSelector = new CurrentImplementationApiVersionSelector(options);
             });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMemoryRepository memoryRepository)
         {
             if (env.IsDevelopment())
             {
@@ -75,13 +77,15 @@ namespace Conta
             });
 
             UseSwagger(app, "");
+
+            memoryRepository.CarregarBase();
+
         }
         private void UseSwagger(IApplicationBuilder app, string routerPrefix)
         {
             app.UseSwagger(
                 c => c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
                 {
-                    //s.Paths = routerPrefix;
                     swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"{httpReq.Scheme}://{httpReq.Host.Value}{routerPrefix}" },
                                                                    new OpenApiServer { Url = $"https://{httpReq.Host.Value}{routerPrefix}" }
                                                                  };

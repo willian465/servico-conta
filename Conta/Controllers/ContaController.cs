@@ -32,5 +32,26 @@ namespace Conta.Controllers
         {
             return Ok(await _contaService.CriarConta(codigoCliente));
         }
+        [HttpPatch]
+        [Route("{numeroConta}/sacar")]
+        [ProducesResponseType(typeof(ContaResponse), StatusCodes.Status200OK)]
+        public async Task<ActionResult<ContaResponse>> Sacar(int numeroConta, double valorSaque)
+        {
+            return Ok(await _contaService.Sacar(numeroConta, valorSaque));
+        }
+        [HttpPatch]
+        [Route("{numeroConta}/depositar")]
+        [ProducesResponseType(typeof(ContaResponse), StatusCodes.Status200OK)]
+        public async Task<ActionResult<ContaResponse>> Depositar(int numeroConta, double valorDeposito)
+        {
+            return Ok(await _contaService.Depositar(numeroConta, valorDeposito));
+        }
+        [HttpGet]
+        [Route("{numeroConta}")]
+        [ProducesResponseType(typeof(ContaResponse), StatusCodes.Status200OK)]
+        public async Task<ActionResult<ContaResponse>> BuscarContaCliente(long numeroConta)
+        {
+            return Ok(await _contaService.BuscarConta(numeroConta));
+        }
     }
 }

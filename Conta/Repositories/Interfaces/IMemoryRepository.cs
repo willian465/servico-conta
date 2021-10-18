@@ -9,7 +9,8 @@ namespace Conta.Repositories.Interfaces
     {
         void Remover(string key);
         Task<T> Adicionar<T>(T model, string key);
-        T Buscar<T>(string key);
-        T Atualizar<T>(T model, string key);
+        Task<T> Buscar<T>(string key);
+        Task Atualizar<T>(T model, string key);
+        void CarregarBase();
     }
 }

@@ -23,14 +23,31 @@ namespace Conta.Services
             _memoryRepository = memoryRepository;
             _converter = converter;
         }
+
+        public async Task<ContaResponse> BuscarConta(long numeroConta)
+        {
+            if (numeroConta <= 0)
+                throw new ContaException("O código do cliente é obrigatório");
+
+            ContaModel contaCadastrada = await _memoryRepository.Buscar<ContaModel>(numeroConta.ToString());
+
+            if (contaCadastrada != null)
+            {
+                contaCadastrada.DataAberturaTratada = DateTimeConvertAsString(contaCadastrada.DataAbertura);
+                contaCadastrada.SaldoTratado = ConvertToMoney(contaCadastrada.Saldo);
+                return _converter.Map<ContaResponse>(contaCadastrada);
+            }
+            return null;
+        }
+
         public async Task<ContaResponse> CriarConta(int codigoCliente)
         {
             if (codigoCliente <= 0)
                 throw new ContaException("O código do cliente é obrigatório");
 
-            ContaModel contaCadastrada = _memoryRepository.Buscar<ContaModel>(codigoCliente.ToString());
+            ContaModel contaCadastrada = await _memoryRepository.Buscar<ContaModel>(codigoCliente.ToString());
 
-            if(contaCadastrada != null)
+            if (contaCadastrada != null)
                 throw new ContaException("Cliente já possui conta cadastrada");
 
             ContaModel conta = new ContaModel()
@@ -43,27 +60,73 @@ namespace Conta.Services
                 Ativa = true
             };
 
-            ContaModel contaSalvaModel = await _memoryRepository.Adicionar(conta, codigoCliente.ToString());
+            ContaModel contaSalvaModel = await _memoryRepository.Adicionar(conta, conta.Numero.ToString());
 
             // eu faria essa conversão direto no campo da classe, mas como pediu um método
             contaSalvaModel.DataAberturaTratada = DateTimeConvertAsString(contaSalvaModel.DataAbertura);
+            contaSalvaModel.SaldoTratado = ConvertToMoney(contaSalvaModel.Saldo);
 
             return _converter.Map<ContaResponse>(contaSalvaModel);
         }
 
-        public Task Depositar(int numeroConta)
+        public async Task<bool> Depositar(int numeroConta, double valorDeposito)
         {
-            throw new NotImplementedException();
+            if (numeroConta <= 0)
+                throw new ContaException("O número da conta é obrigatório");
+
+            if (valorDeposito < 0)
+                throw new ContaException("O valor do depósito deve ser maior que zero");
+
+            // busca a conta informada
+            ContaModel contaCadastrada = await _memoryRepository.Buscar<ContaModel>(numeroConta.ToString());
+
+            if (contaCadastrada == null)
+                throw new ContaException("Conta não encontrada");
+
+            contaCadastrada.Saldo += valorDeposito;
+
+            await _memoryRepository.Atualizar(contaCadastrada, numeroConta.ToString());
+
+            return true;
         }
 
-        public Task Sacar(int numeroConta)
+        public async Task<bool> Sacar(int numeroConta, double valorSaque)
         {
-            throw new NotImplementedException();
+            if (numeroConta <= 0)
+                throw new ContaException("O número da conta é obrigatório");
+
+            if (valorSaque < 0)
+                throw new ContaException("O valor do saque deve ser maior que zero");
+
+            // busca a conta informada
+            ContaModel contaCadastrada = await _memoryRepository.Buscar<ContaModel>(numeroConta.ToString());
+
+            if (contaCadastrada == null || !contaCadastrada.Ativa)
+                throw new ContaException("Cliente não possui conta");
+
+            if (contaCadastrada.Numero != numeroConta)
+                throw new ContaException("Cliente não possui a conta informada");
+
+            if ((contaCadastrada.Saldo - valorSaque) < 0)
+                throw new ContaException("Cliente não possui o valor disponível para saque");
+
+            // atualiza o saldo
+            contaCadastrada.Saldo -= valorSaque;
+
+            await _memoryRepository.Atualizar(contaCadastrada, numeroConta.ToString());
+
+            return true;
         }
 
         private string DateTimeConvertAsString(DateTime date)
         {
             return date.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+        }
+
+        private string ConvertToMoney(double value)
+        {
+            //return string.Format("R$ {0}", Convert.ToDecimal(value));
+            return string.Format("R$ {0:n}", value);
         }
     }
 }

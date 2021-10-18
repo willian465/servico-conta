@@ -28,7 +28,7 @@ namespace Conta.Extensions.DI
 
         public static void ResgistrarRepositories(IServiceCollection services)
         {
-            services.AddScoped<IMemoryRepository, MemoryRepository>();
+            services.AddSingleton<IMemoryRepository, MemoryRepository>();
         }
 
         public static void ResgistrarServices(IServiceCollection services)
